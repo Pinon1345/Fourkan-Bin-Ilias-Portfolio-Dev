@@ -10,9 +10,9 @@ export const personalInfo = {
   bio: "I am a Full Stack Web Developer and student with a strong passion for designing and developing robust web systems. I specialize in modern JavaScript technology stacks including Next.js, React, Node.js, Express, Tailwind CSS, and MongoDB.",
   stats: [
     { label: "Completed Projects", value: 15, suffix: "+" },
-    { label: "Core Technologies", value: 10, suffix: "+" },
+    { label: "Core Technologies", value: 13, suffix: "+" },
     { label: "Months Experience", value: 12, suffix: "+" },
-    { label: "Client Satisfaction", value: 100, suffix: "%" },
+    { label: "Client Satisfaction", value: 117, suffix: "%" },
   ],
 };
 
@@ -20,6 +20,7 @@ export const skills = [
   { name: "Next.js", category: "Frontend", level: 90 },
   { name: "React.js", category: "Frontend", level: 92 },
   { name: "JavaScript (ES6+)", category: "Language", level: 90 },
+  { name: "TypeScript", category: "Language", level: 70 },
   { name: "Tailwind CSS", category: "Styling", level: 95 },
   { name: "Node.js & Express", category: "Backend", level: 85 },
   { name: "MongoDB & Mongoose", category: "Database", level: 88 },
@@ -46,10 +47,10 @@ export const projects = [
       "Stripe",
     ],
     contributors: ["Fourkan Bin Ilias"],
-    liveDemo: "https://legalease-demo.vercel.app", // Update with your actual URL
-    githubRepo: "https://github.com/Pinon1345/legalease",
-    image:
-      "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=1200&q=80",
+    liveDemo: "https://legalease-online-lawyer-hiring-plat.vercel.app/",
+    githubRepo:
+      "https://github.com/Pinon1345/LegalEase-Online-Lawyer-Hiring-Platform",
+    image: "/assets/legalease.png",
     featured: true,
   },
   {
@@ -69,10 +70,9 @@ export const projects = [
       "Better Auth",
     ],
     contributors: ["Fourkan Bin Ilias"],
-    liveDemo: "https://studynook-demo.vercel.app",
-    githubRepo: "https://github.com/Pinon1345/studynook",
-    image:
-      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80",
+    liveDemo: "https://studynook-library-booking-project.vercel.app/",
+    githubRepo: "https://github.com/Pinon1345/StudyNook-Library-Booking-Project",
+    image:"/assets/studynook.png",
     featured: true,
   },
   {
@@ -92,10 +92,9 @@ export const projects = [
       "REST API",
     ],
     contributors: ["Fourkan Bin Ilias"],
-    liveDemo: "https://wanderlust-demo.vercel.app",
-    githubRepo: "https://github.com/Pinon1345/wanderlust",
-    image:
-      "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80",
+    liveDemo: "https://wanderlust-travel-tour.vercel.app/",
+    githubRepo: "https://github.com/Pinon1345/Wanderlust-Travel-Tour",
+    image:"/assets/wanderlust.png",
     featured: true,
   },
   {
@@ -114,10 +113,9 @@ export const projects = [
       "MongoDB",
     ],
     contributors: ["Fourkan Bin Ilias"],
-    liveDemo: "https://hireloop-demo.vercel.app",
-    githubRepo: "https://github.com/Pinon1345/hireloop",
-    image:
-      "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1200&q=80",
+    liveDemo: "https://hireloop-full-stack-project.vercel.app/",
+    githubRepo: "https://github.com/Pinon1345/HireLoop-Job-Finder-Website",
+    image:"/assets/hireloop.png",
     featured: true,
   },
 ];
