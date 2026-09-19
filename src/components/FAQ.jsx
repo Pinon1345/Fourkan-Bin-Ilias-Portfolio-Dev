@@ -35,7 +35,7 @@ export default function FAQ() {
   };
 
   return (
-    <section className="py-20 bg-slate-50/50 dark:bg-slate-900/40">
+    <section className="py-20 bg-slate-50/50 dark:bg-slate-900/40 rounded-t-xl">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center space-y-3 mb-12">
           <h2 className="text-xs font-semibold text-emerald-500 uppercase tracking-widest">

@@ -8,13 +8,13 @@ const creativeWorks = [
     title: "Hireloop Dashboard UI",
     category: "UI/UX Layout",
     image:
-      "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1698047682091-782b1e5c6536?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8am9iJTIwaW50ZXJ2aWV3fGVufDB8fDB8fHww",
   },
   {
     title: "LegalEase Brand Identity",
     category: "Graphic Design",
     image:
-      "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80",
+      "https://media.istockphoto.com/id/509557490/photo/gavel-scales-of-justice-and-law-books.webp?a=1&b=1&s=612x612&w=0&k=20&c=vD4lD0IOVGV5pB_fQU05ArSv2ltVFdFrjz4d1ygAZFk=",
   },
   {
     title: "Vector Asset Collection",
@@ -29,7 +29,7 @@ export default function CreativeShowcase() {
     <section className="py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto space-y-3 mb-12">
-          <h2 className="text-xs font-semibold text-emerald-500 uppercase tracking-widest">
+          <h2 className="text-xs font-semibold text-emerald-500 uppercase tracking-widest mb-6">
             Visual Aesthetics
           </h2>
           <p className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">
@@ -54,7 +54,7 @@ export default function CreativeShowcase() {
                 alt={work.title}
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 filter brightness-90 group-hover:brightness-100"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent p-6 flex flex-col justify-end">
+              <div className="absolute inset-0 bg-linear-to-t from-slate-950/90 via-slate-950/30 to-transparent p-6 flex flex-col justify-end">
                 <span className="text-xs font-semibold text-emerald-400 uppercase tracking-wider">
                   {work.category}
                 </span>

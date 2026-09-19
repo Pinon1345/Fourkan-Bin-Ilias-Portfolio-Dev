@@ -7,7 +7,7 @@ export default function CTA() {
   return (
     <section className="py-20 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative rounded-3xl bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 p-8 sm:p-12 lg:p-16 text-white overflow-hidden shadow-2xl">
+        <div className="relative rounded-3xl bg-linear-to-r from-emerald-600 via-teal-600 to-cyan-600 p-8 sm:p-12 lg:p-16 text-white overflow-hidden shadow-2xl">
           {/* Background Decorative Patterns */}
           <div className="absolute -right-10 -bottom-10 w-80 h-80 bg-white/10 rounded-full blur-2xl" />
 

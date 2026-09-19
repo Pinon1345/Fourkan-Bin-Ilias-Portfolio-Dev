@@ -40,8 +40,8 @@ const activityData = [
 const projectDistribution = [
   { name: "LegalEase", value: 35, color: "#22c55e" },
   { name: "Hireloop", value: 25, color: "#06b6d4" },
-  { name: "Portfolio UI", value: 20, color: "#9333ea" },
-  { name: "StudyNook", value: 20, color: "#3b82f6" },
+  { name: "StudyNook", value: 22, color: "#3b82f6" },
+  { name: "BookBorrow", value: 20, color: "#9333ea" },
 ];
 
 const metricStats = [
@@ -83,33 +83,83 @@ const metricStats = [
   },
 ];
 
+// Framer Motion Animation Variants
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 24 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+  },
+};
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.12,
+    },
+  },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 30, scale: 0.95 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { type: "spring", stiffness: 300, damping: 24 },
+  },
+};
+
 export default function Analytics() {
   const { ref, inView } = useInView({
     triggerOnce: true,
-    threshold: 0.2,
+    threshold: 0.15,
   });
 
   return (
     <section id="analytics" className="py-24 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      {/* Background Glow Overlay */}
+
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-125 h-125 bg-emerald-500/5 dark:bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-3 mb-16">
-          <h2 className="text-xs font-semibold text-emerald-500 uppercase tracking-widest flex items-center justify-center gap-2">
-            <Activity className="w-4 h-4 animate-pulse" /> Live Performance &
-            Metrics
-          </h2>
-          <p className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">
+
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+          variants={fadeInUp}
+          className="text-center max-w-3xl mx-auto space-y-3 mb-16"
+        >
+          <div className="inline-flex items-center gap-2 px-3 py-1 mb-7 rounded-full bg-emerald-500/10 border border-emerald-500/20">
+            <Activity className="w-4 h-4 text-emerald-500 animate-pulse" />
+            <span className="text-xs font-semibold text-emerald-500 uppercase tracking-widest">
+              Live Performance & Metrics
+            </span>
+          </div>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
             Engineering Metrics & Code Output
-          </p>
+          </h2>
           <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base">
             Quantitative evaluation of code commits, full-stack architectural
             growth, and development milestones.
           </p>
-        </div>
+        </motion.div>
 
         {/* Counter Stats Grid */}
-        <div
+        
+        <motion.div
           ref={ref}
+          variants={containerVariants}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12"
         >
           {metricStats.map((stat) => {
@@ -117,18 +167,18 @@ export default function Analytics() {
             return (
               <motion.div
                 key={stat.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: stat.id * 0.1 }}
-                className="p-6 rounded-2xl bg-white dark:bg-[#0f172a] border border-slate-200 dark:border-slate-800 shadow-sm hover:border-emerald-500/50 transition-all duration-300 group"
+                variants={cardVariants}
+                whileHover={{ y: -6, scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                className="p-6 rounded-2xl bg-white/80 dark:bg-[#0f172a]/80 backdrop-blur-xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md hover:border-emerald-500/50 dark:hover:border-emerald-500/50 transition-colors duration-300 group cursor-default"
               >
                 <div className="flex items-center justify-between mb-4">
                   <div
-                    className={`p-3 rounded-xl ${stat.bgColor} ${stat.color}`}
+                    className={`p-3 rounded-xl ${stat.bgColor} ${stat.color} group-hover:scale-110 transition-transform duration-300`}
                   >
                     <Icon className="w-6 h-6" />
                   </div>
-                  <span className="text-xs font-semibold px-2 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 flex items-center gap-1">
+                  <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 flex items-center gap-1">
                     <TrendingUp className="w-3 h-3 text-emerald-500" /> Live
                   </span>
                 </div>
@@ -154,16 +204,17 @@ export default function Analytics() {
               </motion.div>
             );
           })}
-        </div>
+        </motion.div>
 
-        {/* Recharts Graphical Visualizations */}
+        {/* Visualizations Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Main Area Chart: Code Commits & Lines of Code over time */}
+          {/* Main Area Chart */}
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6 }}
-            className="lg:col-span-2 p-6 sm:p-8 rounded-2xl bg-white dark:bg-[#0f172a] border border-slate-200 dark:border-slate-800 shadow-sm"
+            initial={{ opacity: 0, y: 30 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.3 }}
+            whileHover={{ y: -4 }}
+            className="lg:col-span-2 p-6 sm:p-8 rounded-2xl bg-white/80 dark:bg-[#0f172a]/80 backdrop-blur-xl border border-slate-200 dark:border-slate-800 shadow-sm transition-all duration-300 hover:border-emerald-500/40"
           >
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
               <div>
@@ -256,12 +307,13 @@ export default function Analytics() {
             </div>
           </motion.div>
 
-          {/* Bar Chart: Project Effort Allocation */}
+          {/* Bar Chart */}
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="p-6 sm:p-8 rounded-2xl bg-white dark:bg-[#0f172a] border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between"
+            initial={{ opacity: 0, y: 30 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.45 }}
+            whileHover={{ y: -4 }}
+            className="p-6 sm:p-8 rounded-2xl bg-white/80 dark:bg-[#0f172a]/80 backdrop-blur-xl border border-slate-200 dark:border-slate-800 shadow-sm transition-all duration-300 hover:border-cyan-500/40 flex flex-col justify-between"
           >
             <div>
               <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2 mb-1">

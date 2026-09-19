@@ -20,6 +20,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "lovable.dev",
       },
+      {
+        protocol: "https",
+        hostname: "media.istockphoto.com",
+      },
     ],
   },
 };
