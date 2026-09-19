@@ -1,7 +1,13 @@
 "use client";
 
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import {
+  motion,
+  useInView,
+  useMotionValue,
+  useTransform,
+  animate,
+} from "framer-motion";
 import { personalInfo } from "../data/portfolioData";
 import Image from "next/image";
 import { ArrowRight, Sparkles, FileText, Download } from "lucide-react";
@@ -10,6 +16,33 @@ import { BsLinkedin } from "react-icons/bs";
 import { FaMailBulk } from "react-icons/fa";
 import myImage from "../../public/assets/Professional image.jpeg";
 
+function StatCounter({ value }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const numericTarget = parseFloat(value) || 0;
+  const count = useMotionValue(0);
+
+  const rounded = useTransform(count, (latest) =>
+    Number.isInteger(numericTarget) ? Math.floor(latest) : latest.toFixed(1),
+  );
+
+  useEffect(() => {
+    if (isInView) {
+      const controls = animate(count, numericTarget, {
+        duration: 2.5,
+        ease: "easeOut",
+      });
+      return () => controls.stop();
+    }
+  }, [isInView, count, numericTarget]);
+
+  return (
+    <span ref={ref}>
+      <motion.span>{rounded}</motion.span>
+    </span>
+  );
+}
+
 export default function Hero() {
   const [resumeHovered, setResumeHovered] = useState(false);
   const resumeLink =
@@ -17,7 +50,6 @@ export default function Hero() {
 
   return (
     <section className="relative pt-32 pb-16 md:pt-44 md:pb-28 overflow-hidden min-h-screen flex flex-col justify-center">
-
       {/* Dynamic Background Tech Grid Graphics */}
 
       <div className="absolute inset-0 -z-10 opacity-30 dark:opacity-20 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:32px_32px]" />
@@ -43,7 +75,6 @@ export default function Hero() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-
           {/* Hero Left Content Column */}
 
           <motion.div
@@ -85,14 +116,13 @@ export default function Hero() {
             {/* Action Call-To-Action Buttons */}
 
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-4 pt-3">
-
               {/* View Projects CTA */}
 
               <motion.a
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
                 href="#projects"
-                className="flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-600 text-white font-semibold text-sm shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 transition-all duration-300"
+                className="flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-linear-to-r from-emerald-500 via-teal-500 to-cyan-600 text-white font-semibold text-sm shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 transition-all duration-300"
               >
                 View Projects <ArrowRight className="w-4 h-4" />
               </motion.a>
@@ -131,7 +161,6 @@ export default function Hero() {
                 className="flex items-center gap-2 px-5 py-3.5 rounded-2xl border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white text-sm font-semibold hover:bg-slate-100/60 dark:hover:bg-slate-800/40 transition-all duration-300"
               >
                 Contact Me
-
               </motion.a>
             </div>
 
@@ -193,7 +222,6 @@ export default function Hero() {
               }}
               className="relative w-80 h-80 sm:w-96 sm:h-96 xl:w-[410px] xl:h-[410px]"
             >
-
               {/* Radial Glowing Backdrop Ring */}
 
               <div className="absolute -inset-2 rounded-[2.5rem] bg-linear-to-tr from-emerald-500 via-teal-500 to-cyan-500 opacity-40 dark:opacity-30 blur-2xl animate-pulse" />
@@ -271,14 +299,15 @@ export default function Hero() {
 
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.2 }}
           className="mt-16 sm:mt-24 grid grid-cols-2 md:grid-cols-4 gap-6 p-6 sm:p-8 rounded-3xl bg-white/60 dark:bg-slate-900/60 backdrop-blur-xl border border-slate-200/80 dark:border-slate-800/80 shadow-xl"
         >
           {personalInfo.stats.map((stat, idx) => (
             <div key={idx} className="text-center space-y-1">
               <h3 className="text-3xl sm:text-4xl xl:text-5xl font-black bg-clip-text text-transparent bg-linear-to-r from-emerald-500 via-teal-400 to-cyan-500">
-                {stat.value}
+                <StatCounter value={stat.value} />
                 {stat.suffix}
               </h3>
               <p className="text-xs sm:text-sm font-medium text-slate-600 dark:text-slate-400">

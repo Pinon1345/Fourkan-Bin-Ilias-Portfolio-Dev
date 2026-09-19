@@ -10,9 +10,9 @@ export const personalInfo = {
   bio: "I am a Full Stack Web Developer and student with a strong passion for designing and developing robust web systems. I specialize in modern JavaScript technology stacks including Next.js, React, Node.js, Express, Tailwind CSS, and MongoDB.",
   stats: [
     { label: "Completed Projects", value: 15, suffix: "+" },
-    { label: "Core Technologies", value: 13, suffix: "+" },
+    { label: "Core Technologies", value: 17, suffix: "+" },
     { label: "Months Experience", value: 12, suffix: "+" },
-    { label: "Client Satisfaction", value: 117, suffix: "%" },
+    { label: "Client Satisfaction", value: 100, suffix: "%" },
   ],
 };
 
