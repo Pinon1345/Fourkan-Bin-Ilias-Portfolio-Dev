@@ -1,7 +1,9 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import TechMarquee from "@/components/TechMarquee"; // <-- Imported here
 import AboutSkills from "@/components/AboutSkills";
 import TechStackGrid from "@/components/TechStackGrid";
+import Analytics from "@/components/Analytics";
 import Services from "@/components/Services";
 import Experience from "@/components/Experience";
 import Projects from "@/components/Projects";
@@ -16,15 +18,17 @@ export default function Home() {
     <main className="min-h-screen">
       <Navbar />
       <Hero />
+      <TechMarquee />
       <AboutSkills />
       <TechStackGrid />
+      <Analytics />
       <Services />
       <Experience />
       <Projects />
       <CreativeShowcase />
+      <Terminal />
       <FAQ />
       <CTA />
-      <Terminal />
       <Footer />
     </main>
   );

@@ -7,6 +7,7 @@ import { ArrowRight, Sparkles } from "lucide-react";
 import { IoLogoGithub } from "react-icons/io";
 import { BsLinkedin } from "react-icons/bs";
 import { FaMailBulk } from "react-icons/fa";
+import myImage from "../../public/assets/Professional image.jpeg";
 
 export default function Hero() {
   return (
@@ -107,7 +108,7 @@ export default function Hero() {
                 <Image
                   width={800}
                   height={800}
-                  src="https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?auto=format&fit=crop&w=800&q=80"
+                  src={myImage}
                   alt={personalInfo.name}
                   className="w-full h-full object-cover rounded-2xl filter brightness-105 contrast-105"
                 />
