@@ -5,7 +5,7 @@ export const personalInfo = {
     "Building scalable web applications with clean code, elegant designs, and seamless user experiences.",
   email: "pinonfurkan1@gmail.com",
   github: "https://github.com/Pinon1345",
-  linkedin: "https://www.linkedin.com/in/fourkan-bin-ilias-6117b0347",
+  linkedin: "https://www.linkedin.com/in/fourkan-bin-ilias/",
   location: "Chattogram, Bangladesh",
   bio: "I am a Full Stack Web Developer and student with a strong passion for designing and developing robust web systems. I specialize in modern JavaScript technology stacks including Next.js, React, Node.js, Express, Tailwind CSS, and MongoDB.",
   stats: [
